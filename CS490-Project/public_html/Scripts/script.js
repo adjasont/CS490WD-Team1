@@ -41,15 +41,15 @@ function Controller(data) {
     var search_films_function=function(){
         self.search_films.call(self);
     };
-    var select_film_function=function(){
-        self.select_film.call(self);
-    }
+    this.select_film_function=function(){
+        self.select_film.call(this);
+    };
     
     $(this.grid_icon).on("click", make_grid_function);
     $(this.list_icon).on("click", make_list_function);
     $(this.combo_box).on('change',sort_photos);
     $(this.search_box).on('keyup',search_films_function);
-    $(this.search_suggestions).on('click',select_film_function); //adding children() breaks this when it is needed right now
+     //adding children() breaks this when it is needed right now
     
     $("html").on('click',function(){
         $("#suggestions_box").hide();
@@ -116,15 +116,16 @@ Controller.prototype.search_films = function(){
     if(show){
         $("#suggestions_box").html(html);
         $("#suggestions_box").show();
-        $(".sub_suggestions")
+        $(".sub_suggestions");
+        $(this.search_item).on('click',this.select_film_function);
     }
     else
        $("#suggestions_box").hide();
 };
 
-Controller.prototype.select_film = function(search_item){
-    //var tempTitle = toString(search_item.id);
-    document.getElementById("search_box").value = "test";
+Controller.prototype.select_film = function(){
+    var id = $(this).attr("id");
+    document.getElementById("search_box").value = id;
 }
 
 Controller.prototype.add_stars = function() {

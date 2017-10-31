@@ -111,7 +111,28 @@ and open the template in the editor.
     
 }
 
+#search_button{
+    color: black;
+    
+}
+
+#search_box{
+    background-color: white;
+    border: 1px solid cyan;
+}
+
+.suggestions_box{
+    background-color: white;
+    border: 1px solid lightgray;
+    width: 470px;
+    padding: 5px;
+}
+
+.sub_suggestions{
+    background-color: white;
+}
+
 .sub_suggestions:hover{
-    text-decoration: underline;
+    background-color: rgb(245, 245, 245);
     cursor: pointer;
 }
