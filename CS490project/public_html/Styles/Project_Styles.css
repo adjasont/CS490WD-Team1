@@ -294,6 +294,7 @@
 #search_box{
     background-color: white;
     border: 1px solid cyan;
+    width: 470px;
 }
 
 .suggestions_box{
