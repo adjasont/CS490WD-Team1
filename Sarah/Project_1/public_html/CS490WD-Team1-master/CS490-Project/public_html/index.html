@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+    Solution 9 
+
+CSS:
+    Solution 4_B
+-->
+
+
+<html>
+    <head>
+        <title> Project_1 </title>
+        <link rel="stylesheet" type="text/css" href="Styles/Project_Styles.css">
+        <script id="movie-template" type="text/html">
+            <div class='movie'>
+                <img src='{{photo}}'>
+                
+                <div class="details">
+                <div class='movie_title'>{{title}}</div>
+                <div class='movie_year'>({{year}})</div>
+                </div>
+                <div class="starring"> <span1> <b>Starring:</b> <br> </span1><span2> <b>Starring:</b> </span2>{{starring}}</div>
+                <div class="rating_container"> 
+                    <div class="rating"> <b>Rating: </b> </div>
+                    <div class="rating_star"> {{rating}}</div>
+                </div>
+                <div class="description"> {{description}} </div>
+                <img src="images/HD.png" class='{{HD}}'>
+            </div> 
+        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="Scripts/htmlMaker.js"></script>
+        <script src="data/movies.js"></script>
+        <script src="Scripts/script.js"></script>
+    </head>
+    <body>
+        <div class="header_container">
+            <img class="logo" src="images/movie.png">
+            <div class="title"> Rent a movie</div>
+            <div class="searchbox">
+                <input class="search" id="search_box" type="text">
+                <button class="sbutton" id="search_button">Search</button>
+                <div class="suggestions" id="suggestions_box"></div>
+            </div>
+        </div>
+
+        <div class="icons">
+            <div class="left"> Sort By:</div>
+            <select id="combo_box">
+                <option>Year</option>
+                <option>Rating</option>
+            </select>
+            <img id="list_icon" title="list" src="images/list.jpg">
+            <img id="grid_icon" title="grid" src="images/grid_pressed.jpg">
+        </div>
+
+
+        <div id="movie_list" class="grid"></div>
+  
+    </body>
+</html>
