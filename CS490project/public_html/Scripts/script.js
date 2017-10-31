@@ -56,6 +56,7 @@ function Controller(data) {
         $("#suggestions_box").hide();
     });
     
+    
     this.load_photos();
     
 }
@@ -104,14 +105,14 @@ Controller.prototype.search_films = function(){
     var html="";
     var value = $("#search_box").val();
     var show = false;
-    for (var i=0;i<films.length;++i){
+    for (var i=0;i<5;++i){
         var titles = films[i].title.toLowerCase().search(value.toLowerCase().trim());
         var years = films[i].year.toString().search(value.toString().trim());
         var stars = films[i].starring.toLowerCase().search(value.toLowerCase().trim());
         if(titles != -1 || years != -1 || stars != -1)
         {
-            html+= "<div class='sub_suggestions' id='" + films[i].title + "' >";
-            html+= films[i].title + "(" + films[i].year + "), " + films[i].starring;
+            html+= "<div class='sub_suggestions' id='" + films[i].title + "' ><b>";
+            html+= films[i].title + "</b>(" + films[i].year + "), " + films[i].starring;
             html+= "</div>";
             show=true;
         }
@@ -136,7 +137,7 @@ Controller.prototype.add_stars = function() {
     var star_html = "";
     var movie = document.getElementsByClassName("movie");
     for (var i = 0; i < movie.length; i++){
-        count = parseInt(movie[i].children[3].children[1].innerHTML);
+        count = parseInt(movie[i].rating);
         star_html ="";
         for (var j = 0; j < 5; j++) {
             if (j < count) {
