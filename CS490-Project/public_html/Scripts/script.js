@@ -64,6 +64,7 @@ Controller.prototype.load_photos = function() {
     var html_maker = new htmlMaker(template); //create an html Maker
     var html = html_maker.getHTML(this.photos); //generate dynamic HTML based on the data
     $(this.photos_div).html(html);
+    this.add_stars();
 };
 
 Controller.prototype.sort_photos=function(){
@@ -125,3 +126,24 @@ Controller.prototype.select_film = function(search_item){
     //var tempTitle = toString(search_item.id);
     document.getElementById("search_box").value = "test";
 }
+
+Controller.prototype.add_stars = function() {
+    var count = 0;
+    var star_html = "";
+    var movie = document.getElementsByClassName("movie");
+    for (var i = 0; i < movie.length; i++){
+        count = parseInt(movie[i].children[3].children[1].innerHTML);
+        star_html ="";
+        for (var j = 0; j < 5; j++) {
+            if (j < count) {
+                star_html += "<div class='star'><img src='images/gold_star.png'></div>"
+            }
+            else {
+                star_html += "<div class='star'><img src='images/regular_star.png'></div>"
+            }
+        }
+        
+        movie[i].children[3].children[1].innerHTML= star_html;
+    }
+};
+
