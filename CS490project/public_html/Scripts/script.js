@@ -23,6 +23,7 @@ function Controller(data) {
     this.search_box = "#search_box";
     this.search_suggestions = ".suggestions";
     this.search_item = ".sub_suggestions";
+    this.search_button = "#search_button";
     
     
     //bind some events
@@ -45,6 +46,10 @@ function Controller(data) {
     
     this.select_film_function=function(){
         self.select_film.call(this);
+    };
+
+    this.return_search_results_function=function(){
+        self.return_search_results.call(this);
     };
     
     $(this.grid_icon).on("click", make_grid_function);
@@ -121,6 +126,7 @@ Controller.prototype.search_films = function(){
         $("#suggestions_box").show();
         $(".sub_suggestions");
         $(this.search_item).on('click',this.select_film_function);
+        $(this.search_button).on('click',this.return_search_results_function);
     }
     else
        $("#suggestions_box").hide();
@@ -129,7 +135,11 @@ Controller.prototype.search_films = function(){
 Controller.prototype.select_film = function(){
     var id = $(this).attr("id");
     document.getElementById("search_box").value = id;
-}
+};
+
+Controller.prototype.return_search_results = function(){
+    
+};
 
 Controller.prototype.add_stars = function() {
     var count = 0;
