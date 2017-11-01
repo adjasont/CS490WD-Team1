@@ -179,18 +179,20 @@ Controller.prototype.add_stars = function() {
     var star_html = "";
     var movie = document.getElementsByClassName("movie");
     for (var i = 0; i < movie.length; i++){
-        count = parseInt(movie[i].rating);
-        star_html ="";
-        for (var j = 0; j < 5; j++) {
-            if (j < count) {
-                star_html += "<div class='star'><img src='images/gold_star.png'></div>"
+        count = parseInt(movie[i].children[3].children[1].innerHTML);
+        if(count >= 0){
+            star_html ="";
+            for (var j = 0; j < 5; j++) {
+                if (j < count) {
+                    star_html += "<div class='star'><img src='images/gold_star.png'></div>"
+                }
+                else {
+                    star_html += "<div class='star'><img src='images/regular_star.png'></div>"
+                }
             }
-            else {
-                star_html += "<div class='star'><img src='images/regular_star.png'></div>"
-            }
+
+            movie[i].children[3].children[1].innerHTML= star_html;
         }
-        
-        movie[i].children[3].children[1].innerHTML= star_html;
     }
 };
 
