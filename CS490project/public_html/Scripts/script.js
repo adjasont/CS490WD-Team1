@@ -13,6 +13,7 @@ $(document).ready(function () {
 
 function Controller(data) {
     this.photos = data;
+    this.searchData;
     
     /*** constants ***/
     this.movie_list="#movie_list";
@@ -110,12 +111,14 @@ Controller.prototype.search_films = function(){
     var html="";
     var value = $("#search_box").val();
     var show = false;
+    this.searchData = "";
     for (var i=0;i<5;++i){
         var titles = films[i].title.toLowerCase().search(value.toLowerCase().trim());
         var years = films[i].year.toString().search(value.toString().trim());
         var stars = films[i].starring.toLowerCase().search(value.toLowerCase().trim());
         if(titles != -1 || years != -1 || stars != -1)
         {
+            this.searchData+=films[i];
             html+= "<div class='sub_suggestions' id='" + films[i].title + "' ><b>";
             html+= films[i].title + "</b>(" + films[i].year + "), " + films[i].starring;
             html+= "</div>";
@@ -139,7 +142,10 @@ Controller.prototype.select_film = function(){
 };
 
 Controller.prototype.return_search_results = function(){
-    
+    var template=$(this.movie_template).html(); //get the template
+    var html_maker = new htmlMaker(template); //create an html Maker
+    var html = html_maker.getHTML(this.searchData); //generate dynamic HTML based on the data
+    $(this.movie_list).html(html);
 };
 
 Controller.prototype.add_stars = function() {
