@@ -89,7 +89,7 @@ Controller.prototype.sort_photos=function(){
             );
     
     this.load_photos();
-    
+    this.add_stars();
 };
 
 
@@ -190,7 +190,6 @@ Controller.prototype.add_stars = function() {
                     star_html += "<div class='star'><img src='images/regular_star.png'></div>"
                 }
             }
-
             movie[i].children[3].children[1].innerHTML= star_html;
         }
     }
