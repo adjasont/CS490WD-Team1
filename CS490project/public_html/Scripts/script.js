@@ -142,10 +142,18 @@ Controller.prototype.select_film = function(){
 };
 
 Controller.prototype.return_search_results = function(){
-    var template=$(this.movie_template).html(); //get the template
-    var html_maker = new htmlMaker(template); //create an html Maker
-    var html = html_maker.getHTML(this.searchData); //generate dynamic HTML based on the data
-    $(this.movie_list).html(html);
+    var data = movies["movies"];
+    var html = "";        
+    var film = document.getElementById("search_box").value;
+    for(var i = 0; i < data.length; i++){
+        var title = data[i].title;
+        if(title === film){
+            var controller = new Controller(data[i]);
+        }
+        if(film === ""){
+            var controller = new Controller(data);
+        }
+    }
 };
 
 Controller.prototype.add_stars = function() {
