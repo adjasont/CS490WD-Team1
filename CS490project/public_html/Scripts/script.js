@@ -143,16 +143,29 @@ Controller.prototype.select_film = function(){
 
 Controller.prototype.return_search_results = function(){
     var data = movies["movies"];
-    var html = "";        
+    var newData = [];
+    var index = 0;
+    var value = $("#search_box").val();
     var film = document.getElementById("search_box").value;
+    var changeScreen = false;
     for(var i = 0; i < data.length; i++){
-        var title = data[i].title;
-        if(title === film){
-            var controller = new Controller(data[i]);
+        var title = data[i].title.toLowerCase().search(value.toLowerCase().trim());
+        var year = data[i].year.toString().search(value.toString().trim());
+        var star = data[i].starring.toLowerCase().search(value.toLowerCase().trim());
+        if(title != -1 || year != -1 || star != -1)
+        {
+            changeScreen = true;
+            newData[index] = data[i];
+            index++;
         }
-        if(film === ""){
-            var controller = new Controller(data);
-        }
+    }
+    if(changeScreen)
+    {
+        var controller = new Controller(newData);
+    }
+    if(value === "")
+    {
+        var controller = new Controller(data);
     }
 };
 
